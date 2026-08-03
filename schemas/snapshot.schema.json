@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:s4mod:schema:snapshot:1.0",
+  "title": "Sims 4 Mod Folder Steward scan snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "created_at",
+    "language",
+    "platform",
+    "mods_root",
+    "summary",
+    "files",
+    "findings"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "language": { "enum": ["en", "zh-CN"] },
+    "platform": { "type": "string", "minLength": 1 },
+    "mods_root": { "const": "<MODS_FOLDER>" },
+    "summary": { "$ref": "#/$defs/summary" },
+    "files": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/file" }
+    },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/finding" }
+    }
+  },
+  "$defs": {
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![\\\\\\\\/])(?![A-Za-z]:)(?!.*(?:^|[\\\\\\\\/])\\.\\.(?:[\\\\\\\\/]|$)).+$"
+    },
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relative_path",
+        "name",
+        "kind",
+        "size",
+        "sha256",
+        "modified_ns",
+        "folder_depth"
+      ],
+      "properties": {
+        "relative_path": { "$ref": "#/$defs/relativePath" },
+        "name": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["package", "ts4script", "archive", "protected", "other"] },
+        "size": { "type": "integer", "minimum": 0 },
+        "sha256": {
+          "oneOf": [
+            { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+            { "type": "null" }
+          ]
+        },
+        "modified_ns": { "type": "integer", "minimum": 0 },
+        "folder_depth": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "severity", "paths", "evidence"],
+      "properties": {
+        "code": {
+          "enum": [
+            "exact_duplicate",
+            "name_conflict",
+            "script_too_deep",
+            "archive_in_mods",
+            "root_loose_file",
+            "empty_directory",
+            "unsafe_symlink",
+            "read_error",
+            "resource_cfg_missing"
+          ]
+        },
+        "severity": { "enum": ["info", "warning", "review"] },
+        "paths": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/relativePath" }
+        },
+        "evidence": { "type": "object" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "files_total",
+        "package_files",
+        "ts4script_files",
+        "archives",
+        "other_files",
+        "exact_duplicate_groups",
+        "name_conflict_groups",
+        "script_depth_issues",
+        "root_loose_files",
+        "empty_directories",
+        "unsafe_symlinks"
+      ],
+      "properties": {
+        "files_total": { "type": "integer", "minimum": 0 },
+        "package_files": { "type": "integer", "minimum": 0 },
+        "ts4script_files": { "type": "integer", "minimum": 0 },
+        "archives": { "type": "integer", "minimum": 0 },
+        "other_files": { "type": "integer", "minimum": 0 },
+        "exact_duplicate_groups": { "type": "integer", "minimum": 0 },
+        "name_conflict_groups": { "type": "integer", "minimum": 0 },
+        "script_depth_issues": { "type": "integer", "minimum": 0 },
+        "root_loose_files": { "type": "integer", "minimum": 0 },
+        "empty_directories": { "type": "integer", "minimum": 0 },
+        "unsafe_symlinks": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:s4mod:schema:plan:1.0",
+  "title": "Sims 4 Mod Folder Steward operation plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "run_id", "created_at", "workspace_root", "dry_run", "profile", "operations"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "workspace_root": { "const": "<SIMS4_WORKSPACE>" },
+    "dry_run": { "const": true },
+    "profile": { "enum": ["neutral", "en", "zh-CN"] },
+    "operations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/operation" }
+    }
+  },
+  "$defs": {
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![\\\\\\\\/])(?![A-Za-z]:)(?!.*(?:^|[\\\\\\\\/])\\.\\.(?:[\\\\\\\\/]|$)).+$"
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation_id", "action", "source", "destination", "reason", "evidence", "requires_review", "source_sha256", "target_sha256"],
+      "properties": {
+        "operation_id": { "type": "string", "format": "uuid" },
+        "action": {
+          "enum": ["install", "replace", "backup", "skip", "review"]
+        },
+        "source": { "$ref": "#/$defs/relativePath" },
+        "destination": {
+          "oneOf": [
+            { "$ref": "#/$defs/relativePath" },
+            { "type": "null" }
+          ]
+        },
+        "reason": { "type": "string", "minLength": 1 },
+        "evidence": { "type": "object" },
+        "requires_review": { "type": "boolean" },
+        "source_sha256": {
+          "oneOf": [
+            { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+            { "type": "null" }
+          ]
+        },
+        "target_sha256": {
+          "oneOf": [
+            { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+            { "type": "null" }
+          ]
+        }
+      }
+    }
+  }
+}

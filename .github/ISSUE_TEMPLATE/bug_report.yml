@@ -1,0 +1,33 @@
+name: Bug report
+description: Report a reproducible problem without uploading private mod files.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows
+        - macOS
+        - Linux / other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Tool version
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Redact usernames and absolute paths.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Synthetic reproduction steps
+      description: Do not upload real .package or .ts4script files.

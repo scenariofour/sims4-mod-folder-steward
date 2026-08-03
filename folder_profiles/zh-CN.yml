@@ -1,0 +1,15 @@
+locale: zh-CN
+categories:
+  core: "10_核心依赖"
+  ui: "11_界面工具"
+  school: "20_学校与青少年"
+  career: "21_职业"
+  relationships: "30_关系与互动"
+  food: "31_食物"
+  gameplay: "40_玩法"
+  adult_gameplay: "50_成人玩法"
+  cas: "90_外观与服装"
+  body_details: "91_身体细节"
+  animations_props: "92_动画与道具"
+  poses: "94_姿势"
+  manual_review: "99_人工检查"

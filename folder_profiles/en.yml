@@ -1,0 +1,15 @@
+locale: en
+categories:
+  core: "10_CORE"
+  ui: "11_UI"
+  school: "20_SCHOOL_AND_TEENS"
+  career: "21_CAREERS"
+  relationships: "30_RELATIONSHIPS"
+  food: "31_FOOD"
+  gameplay: "40_GAMEPLAY"
+  adult_gameplay: "50_ADULT_GAMEPLAY"
+  cas: "90_CAS_CC"
+  body_details: "91_BODY_DETAILS"
+  animations_props: "92_ANIMATIONS_AND_PROPS"
+  poses: "94_POSES"
+  manual_review: "99_MANUAL_REVIEW"

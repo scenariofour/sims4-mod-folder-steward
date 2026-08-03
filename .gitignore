@@ -1,0 +1,29 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+dist/
+build/
+release/
+coverage.xml
+.coverage
+htmlcov/
+
+# Local user data and generated runs
+runs/
+reports/
+quarantine/
+inbox/
+AI_HANDOFF*.md
+*.local.json
+*.local.yml
+*.local.yaml
+
+# Never commit private workflow references
+PRIVATE_REFERENCE_DO_NOT_PUSH/
+private_reference/
