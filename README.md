@@ -90,5 +90,8 @@ mypy src
 Tests use synthetic bytes only. The repository must never include real mods, paid content, user
 inventories, credentials, private computer paths, or private reference material.
 
+Made by [Iris](https://iris-li-homepage.vercel.app/). The case study is in
+[RIRRI'S](https://rirris-world.vercel.app/#/work/sims4-steward), Iris's 3D portfolio.
+
 Licensed under the [MIT License](./LICENSE). This unofficial fan-made utility is not affiliated
 with Electronic Arts, Maxis, or The Sims.
