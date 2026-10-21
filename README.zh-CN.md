@@ -83,6 +83,6 @@ mypy src
 
 测试只能使用虚构字节。仓库不能包含真实 Mod、付费内容、用户清单、凭证、私人电脑路径或私有参考材料。
 
-作者：[Iris](https://iris-li-homepage.vercel.app/)。项目案例见 Iris 的 3D 作品集 [RIRRI'S](https://rirris-world.vercel.app/#/work/sims4-steward)。
+作者：[Iris](https://irisli.dev/)。项目案例见 Iris 的 3D 作品集 [RIRRI'S](https://world.irisli.dev/#/work/sims4-steward)。
 
 项目使用 [MIT License](./LICENSE)。这是非官方玩家工具，与 Electronic Arts、Maxis 或 The Sims 无关联。
